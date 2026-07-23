@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #06201a;
+  --color-emerald-deep: #0a3229;
+  --color-emerald: #0f4a39;
+  --color-emerald-soft: #16624b;
+  --color-gold-1: #f7e7a8;
+  --color-gold-2: #e8c877;
+  --color-gold-3: #cfa24a;
+  --color-cream: #f5f1e8;
+  --color-cream-dim: #cdc8ba;
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Pinyon Script", cursive;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+.gold-text {
+  background: linear-gradient(115deg, #f7e7a8 0%, #e8c877 40%, #cfa24a 75%, #f7e7a8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.gold-shine {
+  background: linear-gradient(115deg, #f7e7a8 0%, #e8c877 40%, #cfa24a 75%, #f7e7a8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+
+.glass {
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(232, 200, 119, 0.18);
+}
+
+.btn-gloss {
+  background: linear-gradient(135deg, #f7e7a8, #e8c877 45%, #cfa24a);
+  color: #06201a;
+  position: relative;
+  overflow: hidden;
+}
+.btn-gloss::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .7s ease;
+}
+.btn-gloss:hover::after { transform: translateX(120%); }
+
+.grain::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 3; opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection { background: rgba(232,200,119,.3); color: #fff; }
+
+.marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-track { background: #06201a; }
+::-webkit-scrollbar-thumb { background: #16624b; border-radius: 20px; }
